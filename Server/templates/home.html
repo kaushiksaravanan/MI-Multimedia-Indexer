@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart India Hackathon</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{url_for("static",filename="style1.css")}}">
+    <link rel="shortcut icon" type="image/ico" href="{{url_for("static",filename="SIH.png")}}"/>
+    <style>
+      /* body {
+        background: url("https://mywebsiteakash007.s3.us-west-1.amazonaws.com/bg.gif") no-repeat center center fixed;
+        /* background: url("{{url_for("static",filename="bg4.gif")}}") no-repeat center center fixed; */
+        background-size: cover;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="bar-left">
+        <div class="menu">
+          <h4>Hezagon Search</h4>
+        </div>
+      </div>
+      <div class="bar-right">
+        <div class="menu">
+          <h4>User : Demo User</h4>
+        </div>
+        <!-- <a href="" class="profile-trigger">
+          <img src="{{url_for("static",filename="profile_icon.png")}}"/>
+        </a> -->
+      </div>
+    </div>
+    <div class="content">
+      <div class="search-wrapper">
+        <br>
+        <a href="" class="search-logo">
+          <img src="{{url_for("static",filename="SIH.png")}}"/>
+        </a>
+        <form class="content-wrapper" method="post" action="/search_prcss">
+          <div class="search-bar">
+            <div class="search-icon">
+              <i class="fa fa-search"></i>
+            </div>
+            <input
+              id="search-input"
+              class="search-input"
+              name="search_term"
+              type="text"
+              color="red"
+              placeholder="Search here ..."
+            />
+          </div>
+          <center>
+            <input type="submit" value="Hez Search" class="search">
+          </center>
+      </form>
+      
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div class="bar-left">
+        <div class="menu">
+          <a href="">How Search Works</a>
+        </div>
+      </div>
+      <div class="bar-right">
+        <div class="menu">
+          <a href="">Settings</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

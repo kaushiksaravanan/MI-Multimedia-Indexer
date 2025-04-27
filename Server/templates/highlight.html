@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcut icon" type="image/ico"
+href="{{url_for("static",filename="SIH.png")}}" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ path }}</title>
+<style>
+*{
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+.highlight_full{
+  background: yellow;
+}
+.highlight_prefix{
+  background: pink;
+}
+.highlight_suffix{
+  background: lightskyblue;
+}
+.highlight_alone{
+  background: lightsalmon;
+}
+</style>
+</head>
+<body>
+</body>
+<script>
+
+console.log('{{ search_query }}');
+console.log('{{ path }}');
+
+const keywordsString = "{{ search_query }}";
+const keywords = keywordsString.split(/\s/);
+console.log(keywords);
+
+const pattern_prefix = new RegExp(`(${keywords.join('|')})\w+`, 'gi'); 
+const pattern_suffix = new RegExp(`\w+(${keywords.join('|')})`, 'gi'); 
+const pattern_full = new RegExp(`\w+(${keywords.join('|')})\w+`, 'gi');
+const pattern_alone = new RegExp(`(${keywords.join('|')})`, 'gi');
+
+console.log(pattern_prefix);
+console.log(pattern_suffix);
+console.log(pattern_full);
+console.log(pattern_alone);
+
+const phrase = `{{ content }}`;
+
+console.log(pattern_prefix.test(phrase));
+let result = phrase.replace(pattern_prefix, match => `<span class="highlight_prefix"><b>${match}</b></span>`);
+console.log(result);
+
+console.log(pattern_suffix.test(phrase));
+result = result.replace(pattern_suffix, match => `<span class="highlight_suffix"><b>${match}</b></span>`);
+console.log(result);
+
+console.log(pattern_full.test(phrase));
+result = result.replace(pattern_full, match => `<span class="highlight_full"><b>${match}</b></span>`);
+console.log(result);
+
+console.log(pattern_alone.test(phrase));
+result = result.replace(pattern_alone, match => `<span class="highlight_alone"><b>${match}</b></span>`);
+console.log(result);
+
+document.body.innerHTML = result;
+
+</script>
+</html>

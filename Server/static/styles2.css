@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&display=swap');
+
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+#topbar {
+    display: flex;
+    height: 64px;
+    /* width: 100%; */
+    align-items: center;
+    background: skyblue;
+    padding: 1rem;
+}
+
+#searchbarimage {
+    height: 90px;
+    padding: 0px 8px 0px 0px;
+    /* position: relative; */
+    cursor: pointer;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+#searchbarmic {
+    height: 45px;
+    width: 35px;
+    margin-left: auto;
+    background-color: white;
+}
+
+#searchbarmic img {
+    height: 25px;
+}
+
+#searchbarbutton {
+    height: 45px;
+    width: 55px;
+    position: relative;
+    margin-right: -2px;
+    background-color: white;
+}
+
+#searchbarbutton svg {
+    height: 25px;
+    width: 35px;
+    position: relative;
+    left: -3px;
+}
+
+#searchbarbutton svg path {
+    fill: #4285F4
+}
+
+#searchbar {
+    width: 625px;
+    height: 45px;
+    border-radius: 100px;
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 16px;
+    position: relative;
+    bottom: 5px;
+    overflow: hidden;
+    display: flex;
+    z-index: 100;
+    margin: 0 auto;
+}
+
+#searchbar:hover {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#searchbar>input {
+    height: 45px;
+    border-style: none;
+    font-size: 16px;
+    line-height: 45px;
+    padding-left: 20px;
+    flex: 1;
+}
+
+#searchbar>input:focus {
+    outline: none;
+}
+
+#searchbar button {
+    border: none;
+    cursor: pointer;
+}
+
+#searchbar button:focus {
+    outline: none;
+}
+
+#boxesicon {
+    width: 25px;
+    height: 25px;
+    background-image: url('images/boxes.png');
+    opacity: 0.6;
+    background-size: 26px;
+    position: absolute;
+    right: 130px;
+    bottom: 14px;
+}
+
+#optionsmenuactive::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #4285F4;
+    left: 5px;
+    bottom: 0px;
+}
+
+#optionsmenu2 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 100px;
+}
+
+#optionsmenu2 li {
+    padding: 0px 10px 15px 20px;
+}
+
+.table__container {
+    display: flex;
+    justify-content: center;
+}
+
+#searchresultsarea {
+    font-family: 'Arial';
+}
+
+#searchresultsnumber {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.searchresult {
+    margin-left: 8px;
+}
+
+.searchresult h2 {
+    font-size: 19px;
+    line-height: 18px;
+    font-weight: normal;
+    color: rgb(29, 1, 189);
+    margin-bottom: 0px;
+    margin-top: 25px;
+}
+
+.searchresult a {
+    font-size: 14px;
+    line-height: 14px;
+    color: green;
+    margin-bottom: 0px;
+}
+
+.searchresult button {
+    font-size: 10px;
+    line-height: 14px;
+    color: green;
+    margin-bottom: 0px;
+    padding: 0px;
+    border-width: 0px;
+    background-color: white;
+}
+
+
+.blur-box {
+    background-color: rgba(255, 255, 255, 0.348);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 35px;
+    resize: both;
+}
+
+.blur-box:before {
+    width: 200%;
+    height: 200%;
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    bottom: 0;
+    right: 0;
+    box-shadow: inset 0 0 0 5000px rgba(255, 255, 255, 0.9);
+    z-index: 0;
+}
+
+.path {
+    color: green;
+    z-index: 2;
+}
+
+.res-element {
+    padding-left: 10%;
+}
+
+.riser:hover {
+    box-shadow: 0px 5px 5px 0px gray;
+    width: 50%;
+    border-radius: 15px;
+}
+
+form {
+    margin: 0 auto;
+}
+
+.img_txt {
+    width: 6%;
+    font-family: 'Roboto', sans-serif;
+}

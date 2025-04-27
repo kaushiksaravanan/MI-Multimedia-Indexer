@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hezagon Search</title>
+        <link rel="shortcut icon" type="image/ico"
+        href="{{url_for("static",filename="SIH.png")}}" /> 
+        <link rel="stylesheet" type="text/css" href="{{url_for("static",filename="styles2.css")}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for("static",filename="table.css")}}" />
+        <style>
+
+    .tag {
+      background: #333;
+      margin: 5px;
+      color: white;
+      padding: 10px 15px 10px 20px;
+      border-radius: 4px;
+      cursor: pointer; 
+      width: fit-content;
+    }
+    .tag:hover {
+        background: #222; 
+    }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="header">
+            <div>
+                <div id="topbar">
+                    <a href="/"><img id="searchbarimage"
+                        src="{{url_for("static",filename="SIH.png")}}" />
+                    </a>
+                    <div class="img_txt">SMART INDIA HACKATHON 2022</div>
+                    <form action="/search_prcss" method="post">
+                        <div id="searchbar">
+                            <input id="searchbartext" type="text" name="search_term"
+                            value="{{context["search_term"]}}" />
+                            <button id="searchbarmic"></button>
+                            <button id="searchbarbutton" type="submit">
+                                <svg
+                                    focusable="false"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="searchresultsarea">
+            <p id="searchresultsnumber">&emsp; About {{ context["content"]|length }} results</p>
+            {% for i in tokens %}
+            <span class="tag">{{ i }}</span>
+            {% endfor %}
+            <br/><br/>
+            {% if context["content"]!=[] -%}
+            <!-- <table class="centered"> -->
+            <div class = "table__container">
+                <table class = "container">
+                <thead>
+                    <tr>
+                        <th>Link</th>
+                        <th>Tokens</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                {% for i in context["content"] %}
+                    <tr>
+                        <td>
+                            <a href="/open/{{ i["path"].replace("\\", "<->") }}?query_search={{context["search_term"]}}" target="_blank" style="text-decoration: none;">
+                                <h3 id="path">{{ (i["path"].split("\\"))[-1] }}</h3>
+                            </a>
+                        </td>
+                        <td>
+                            {% for token in i['pure_tokens'] %}
+                            <div class="tag">{{ token }}</div>&emsp;
+                            {% endfor %}
+                        </td>
+                        <td>
+                            Score : {{i["score"]}}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+            {% else -%}
+            <h1>No results</h1>
+            {%endif%}
+            </main>
+        </div>
+    </body>
+</html>

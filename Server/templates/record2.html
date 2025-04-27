@@ -1,0 +1,42 @@
+<table>
+    <thead>
+        <tr>
+            {% for col in columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in dicts %}
+        <tr>
+          {% for key in record %}
+            <td><span>{{ record[key]['value'] }}</span>
+              {% if 'link' in record[key] %}
+                <br/>
+                <button id="btn{{ record[key]['id'] }}" onclick="showcontent('{{ record[key]['link'] }}','t{{ record[key]['id'] }}','btn{{ record[key]['id'] }}')">Show</button>
+                <div id='t{{ record[key]['id'] }}' display="none" class="comali" value="0"></div>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    <script>      
+      // const keywordsString = "{{ search_query }}";
+      // if(keywordsString !== '()'){
+      //   let table = document.getElementById("myTable");
+      //   var matches = table.querySelectorAll("span");
+      //   const keywords = keywordsString.split(/\s/);
+      //   const pattern = new RegExp(`(${keywords.join('|')})`, 'gi');
+      
+      //   matches.forEach((item) => {
+      //     // console.log(item.innerText);
+      //     let result = item.innerText.replace(pattern, match => `<span class="highlight"><b>${match}</b></span>`);
+      //     item.innerText = "";
+      //     item.innerHTML = result;
+      //     // console.log(result);
+      //   });
+      
+      // }
+      </script>
+</table>

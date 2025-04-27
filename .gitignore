@@ -1,0 +1,6 @@
+Tesseract-OCR/
+Tesseract-OCR/*
+__pycache__/
+./Tesseract-OCR
+./__pycache__
+sample.pickle

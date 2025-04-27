@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="shortcut icon" type="image/ico"
+href="{{url_for("static",filename="SIH.png")}}" /> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".comali").hide();
+});
+
+function showcontent(a,b,c){
+    var d="#"+b
+    if ( $(d).attr('value')=='0') {
+        $(d).attr('value','1')
+        $('.comali').append("<p></p>")
+        loadXMLDoc(a,d);
+    }
+    console.log(d)
+    $(d).toggle(function(){
+        var r1=document.getElementById(c)
+        if(r1.innerHTML=="Hide"){
+           r1.innerHTML="Show"
+        }
+        else{
+            r1.innerHTML="Hide"
+        }
+    });
+  }
+
+function loadXMLDoc(b,a) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      // document.getElementById(a.substring(1)).innerHTML =  this.responseText;
+
+      $(a).append(this.responseText)
+    }
+  };
+  xhttp.open("GET", b, true);
+  xhttp.send();
+}
+</script>
+<style>
+  .highlight{
+    background: yellow;
+  }
+</style>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='table2.css') }}">
+<body>
+  <table id="myTable">
+    <thead>
+        <tr>
+            {% for col in columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in dicts %}
+        <tr>
+          {% for key in record %}
+            <td><span>{{ record[key]['value'] }}</span>
+              {% if 'link' in record[key] %}
+                <br/>
+                <button id="btn{{ record[key]['id'] }}" onclick="showcontent('{{ record[key]['link'] }}','t{{ record[key]['id'] }}','btn{{ record[key]['id'] }}')">Show</button>
+                <div id='t{{ record[key]['id'] }}' display="none" class="comali" value="0"></div>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+<script>
+
+const keywordsString = "{{ query_search }}";
+if(keywordsString !== '()'){
+  let table = document.getElementById("myTable");
+  var matches = table.querySelectorAll("span");
+  const keywords = keywordsString.split(/\s/);
+  const pattern = new RegExp(`(${keywords.join('|')})`, 'gi');
+
+  matches.forEach((item) => {
+    // console.log(item.innerText);
+    let result = item.innerText.replace(pattern, match => `<span class="highlight"><b>${match}</b></span>`);
+    item.innerText = "";
+    item.innerHTML = result;
+    // console.log(result);
+  });
+
+}
+</script>
+</html>
